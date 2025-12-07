@@ -1,0 +1,5 @@
+
+# Python dependencies for Vrisber
+# The core package uses only the Python standard library.
+# You still need ffmpeg/ffprobe and imageProcessor-cli installed as external tools.
+

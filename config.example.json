@@ -1,0 +1,80 @@
+
+{
+  "_description": "Example configuration for Vrisber VR SBS Video Processor",
+  "_presets": {
+    "maximum_quality_nvenc": "NVENC p7, constqp, QP 18 for best quality",
+    "balanced_nvenc": "NVENC p5, constqp, QP 22 for balanced quality/speed",
+    "software_maximum": "Software HEVC (x265) CRF 15 for maximum quality (slow)",
+    "quest3_av1": "AV1 settings tuned for Quest 3 playback",
+    "dual_gpu": "Use left_eye_device/right_eye_device for dual-GPU setups"
+  },
+
+  "imageProcessor": {
+    "path": "imageProcessor-cli.exe",
+    "device": "cuda:0",
+
+    "left_eye_device": null,
+    "right_eye_device": null,
+
+    "max_clip_length": 120,
+
+    "mosaic_restoration_model": null,
+    "mosaic_detection_model_path": null,
+
+    "extra_args": ""
+  },
+
+  "encoding": {
+    "codec": "hevc_nvenc",
+    "keyframe_interval_seconds": 5,
+    "moov_front": true,
+
+    "hevc_nvenc": {
+      "preset": "p7",
+      "rc": "constqp",
+      "qp": 18,
+      "rc_lookahead": 32,
+      "spatial_aq": 1,
+      "temporal_aq": 1,
+      "aq_strength": 8,
+      "bf": 3,
+      "b_ref_mode": "middle"
+    },
+
+    "hevc": {
+      "crf": 15,
+      "preset": "slower",
+      "x265_params": "aq-mode=3:psy-rd=1.0:psy-rdoq=1.0"
+    },
+
+    "libsvtav1": {
+      "crf": 20,
+      "preset": 4
+    },
+
+    "h264": {
+      "crf": 18,
+      "preset": "slow"
+    }
+  },
+
+  "processing": {
+    "parallel_eyes": true,
+    "test_mode": false,
+
+    "intermediate_codec": "ffv1",
+
+    "temp_dir": null,
+    "keep_intermediates": false,
+    "output_suffix": "-Restored"
+  },
+
+  "batch": {
+    "video_extensions": [".mp4", ".mkv", ".avi", ".mov", ".ts"],
+    "skip_existing": true
+  },
+
+  "logging": {
+    "level": "INFO"
+  }
+}
