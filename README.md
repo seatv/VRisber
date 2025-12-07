@@ -1,4 +1,4 @@
-# Vrisber
+# VRiSBer
 
 **Vrisber** is a VR Side-by-Side (SBS) video processor that sits on top of an external image restoration CLI (for example, `lada-cli`).  
 
