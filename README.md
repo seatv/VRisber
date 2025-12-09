@@ -76,7 +76,7 @@ Configuration:
   - `ffmpeg` (with FFV1 support).
   - `ffprobe` (bundled with ffmpeg).
   - An image restoration CLI, referenced as `imageProcessor-cli`:
-    - In practice this is typically configured to point at `lada-cli.exe` or similar.
+    - In practice this is typically configured to point at `cli.exe` or similar.
 - **Hardware**:
   - Fast SSD/NVMe with multiple times the input size free (for intermediates).
   - NVIDIA GPU recommended for NVENC (`hevc_nvenc`).
@@ -129,7 +129,7 @@ copy config.example.json config.json
 
 Then edit `config.json` and set at least:
 
-- `imageProcessor.path` → path to your CLI executable (e.g. `lada-cli.exe`).  
+- `imageProcessor.path` → path to your CLI executable (e.g. `cli.exe`).  
 - `imageProcessor.device` → default device, for example `"cuda:0"`.  
 - `encoding.codec` → final output codec (`"hevc_nvenc"`, `"hevc"`, `"libsvtav1"`, `"h264"`).  
 - `processing.temp_dir` → a fast, large temp directory (e.g. `D:\VrisberTemp`).
@@ -198,7 +198,7 @@ From a terminal:
 ~~~bash
 ffmpeg -version
 ffprobe -version
-imageProcessor-cli --help   # or lada-cli --help if that’s what you’re using
+imageProcessor-cli --help   # or cli --help if that’s what you’re using
 ~~~
 
 Make sure all three are installed and on your PATH.
