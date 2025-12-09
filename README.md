@@ -1,6 +1,6 @@
 # Vrisber
 
-**Vrisber** is a VR Side-by-Side (SBS) video processor that sits on top of an external image restoration CLI (for example, `lada-cli`).  
+**Vrisber** is a VR Side-by-Side (SBS) video processor that sits on top of an external image restoration CLI.  
 
 It takes an SBS VR video (e.g. 3840×2160), splits it into left/right eye streams, runs each eye through a configurable restoration backend, and reconstructs a high-quality SBS output tuned for VR headsets like the Quest 2/3.
 
@@ -12,7 +12,7 @@ Vrisber is implemented in pure Python (standard library only) and delegates heav
 
 - `ffmpeg` – split, audio extraction, final encode/mux  
 - `ffprobe` – video analysis  
-- `imageProcessor-cli` – per-eye restoration (mosaic removal, etc.)
+- `imageProcessor-cli` – per-eye restoration
 
 ---
 
@@ -146,8 +146,8 @@ High-level structure (simplified):
     "left_eye_device": null,
     "right_eye_device": null,
     "max_clip_length": 120,
-    "mosaic_restoration_model": null,
-    "mosaic_detection_model_path": null,
+    "restoration_model": null,
+    "detection_model_path": null,
     "extra_args": ""
   },
 
