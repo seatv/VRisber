@@ -1,4 +1,3 @@
-
 """
 Command-line interface for Vrisber.
 
@@ -40,6 +39,9 @@ Examples:
   # Test mode (skip imageProcessor processing; validates split/mux pipeline)
   vrisber input.mp4 --test-mode
 
+  # Commands-only mode (generate PowerShell script without executing)
+  vrisber input.mp4 --commands-only
+
   # Use custom config file
   vrisber input.mp4 --config custom_config.json
 
@@ -70,6 +72,11 @@ Examples:
         "--test-mode",
         action="store_true",
         help="Test mode: skip imageProcessor processing (split/mux only)",
+    )
+    parser.add_argument(
+        "--commands-only",
+        action="store_true",
+        help="Commands-only mode: generate PowerShell script without executing",
     )
     parser.add_argument(
         "--device",
@@ -104,6 +111,10 @@ Examples:
         processor.config.setdefault("processing", {})["test_mode"] = True
         processor.logger.info("TEST MODE ENABLED - imageProcessor processing will be skipped")
 
+    if args.commands_only:
+        processor.config.setdefault("processing", {})["commands_only"] = True
+        processor.logger.info("COMMANDS-ONLY MODE ENABLED - PowerShell script will be generated without execution")
+
     if args.device:
         processor.config.setdefault("imageProcessor", {})["device"] = args.device
         processor.logger.info("Overriding device: %s", args.device)
@@ -124,11 +135,13 @@ Examples:
         processor.logger.info("Forcing parallel eye processing: disabled")
 
     # Check external dependencies (ffmpeg, ffprobe, imageProcessor-cli)
-    try:
-        processor._check_dependencies()
-    except RuntimeError as e:
-        processor.logger.error(str(e))
-        return 1
+    # Skip dependency check in commands-only mode since we're just generating scripts
+    if not args.commands_only:
+        try:
+            processor._check_dependencies()
+        except RuntimeError as e:
+            processor.logger.error(str(e))
+            return 1
 
     input_path = Path(args.input)
 

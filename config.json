@@ -19,7 +19,7 @@
     "max_clip_length": 120,
 
     "mosaic_restoration_model": null,
-	"mosaic-detection-model-path": "D:/Models/lada_vr_mosaic_detection_model_1.0.pt",
+	"mosaic-detection-model-path": "D:/Models/lada/lada_vr_mosaic_detection_model_1.0.pt",
 
     "extra_args": ""
   },

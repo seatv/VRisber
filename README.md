@@ -299,6 +299,15 @@ vrisber ./videos/ --output-dir ./restored/ --codec hevc_nvenc --device cuda:0
 ~~~
 
 ---
+### Commands-Only Mode
+~~~bash
+#Just output commands - DO NOT process file(s)
+vrisber input.ts --commands-only
+~~~
+The above will output input-Restored.ps1 file with commands that will be invoked by vrisber to process the file(s). As starting after an interruption is not implmemented yet, these commands can be used to pickup from where the interruption occured.
+
+
+
 
 ## How the pipeline works (Option A)
 
